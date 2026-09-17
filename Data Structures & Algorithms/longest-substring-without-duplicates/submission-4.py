@@ -1,0 +1,16 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        visited = set()
+        longest = 0
+
+        l, r = 0, 0
+        while r < len(s):
+            if s[r] in visited:
+                while s[r] in visited:
+                    visited.remove(s[l])
+                    l += 1
+
+            visited.add(s[r])
+            longest = max(longest, (r - l + 1))
+            r += 1
+        return longest
